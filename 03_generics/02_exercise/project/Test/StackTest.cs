@@ -10,15 +10,22 @@ namespace Test
         {
             // TODO: ...
 
+            var stack = new Stack<int>();
+            
             Assert.Empty(stack);
             
             // TODO: ...
 
+            stack.Push(1);
+            stack.Push(2);
+            stack.Push(3);
+            
             Assert.Equal(3, stack.Count);
             
             int Next()
             {
                 // TODO: ...
+                return stack.Pop();
             }
 
             Assert.Equal(3, stack.Count);

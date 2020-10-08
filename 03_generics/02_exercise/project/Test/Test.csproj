@@ -31,4 +31,8 @@
   <ItemGroup>
     <None Remove="TestResults\**" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="CollectionTest.cs" />
+  </ItemGroup>
 </Project>
