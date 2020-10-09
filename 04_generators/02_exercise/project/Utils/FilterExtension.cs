@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace Utils
 {
@@ -68,7 +66,7 @@ namespace Utils
             if (enumerable == null) yield break;
             // if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
             IEnumerator<int> iterator = enumerable.GetEnumerator();
-            int index = 0;
+            var index = 0;
             
             do
             {

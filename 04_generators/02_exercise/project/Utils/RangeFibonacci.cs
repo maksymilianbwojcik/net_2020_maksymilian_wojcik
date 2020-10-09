@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Security.Claims;
 
 namespace Utils
 {
@@ -8,24 +6,24 @@ namespace Utils
     {
         // TODO: Fields....
 
-        private int start;
-        private int step;
-        private int till;
+        private readonly int _start;
+        private readonly int _step;
+        private readonly int _till;
 
         // TODO: Constructor....
 
         public RangeFibonacci()
         {
-            start = 0;
-            step = 1;
-            till = 1;
+            _start = 0;
+            _step = 1;
+            _till = 1;
         }
 
         public RangeFibonacci(int a = 0, int b = 1, int stop = 1)
         {
-            start = a;
-            step = b;
-            till = stop;
+            _start = a;
+            _step = b;
+            _till = stop;
         }
         
         public override IEnumerable<int> Numbers()
@@ -34,12 +32,12 @@ namespace Utils
 
             var prev = -1;
             var res = 1;
-            for (int i = 0; i<=44; i++)
+            for (var i = 0; i<=44; i++)
             {
-                int sum = res + prev;
+                var sum = res + prev;
                 prev = res;
                 res = sum;
-                if (i <= till && i >= start && (i-start)%step==0 )
+                if (i <= _till && i >= _start && (i-_start)%_step==0 )
                     yield return sum;
             }
         }

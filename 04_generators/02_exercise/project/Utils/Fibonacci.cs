@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Runtime.InteropServices.ComTypes;
 
 namespace Utils
 {
@@ -13,9 +11,9 @@ namespace Utils
 
             var prev = -1;
             var res = 1;
-            for (int i = 0; i<44; i++)
+            for (var i = 0; i<44; i++)
             {
-                int sum = res + prev;
+                var sum = res + prev;
                 prev = res;
                 res = sum;
                 yield return sum;
