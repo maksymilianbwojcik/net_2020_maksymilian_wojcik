@@ -28,17 +28,17 @@ namespace App
 
             var fibonacci = new Fibonacci();
 
-//            foreach (var number in fibonacci.Numbers().Even().Only(times))
-//            {
-//                Console.WriteLine(number);
-//            }
-//
-//            Console.WriteLine();
-//
-//            foreach (var number in fibonacci.Numbers().Odd().Only(times))
-//            {
-//                Console.WriteLine(number);
-//            }
+            foreach (var number in fibonacci.Numbers().Even().Only(times))
+            {
+                Console.WriteLine(number);
+            }
+
+            Console.WriteLine();
+
+            foreach (var number in fibonacci.Numbers().Odd().Only(times))
+            {
+                Console.WriteLine(number);
+            }
 
             Console.WriteLine();
         }
