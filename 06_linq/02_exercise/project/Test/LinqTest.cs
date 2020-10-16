@@ -1,4 +1,7 @@
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using Castle.Core.Internal;
 using Utils;
 using Xunit;
 
@@ -52,7 +55,8 @@ namespace Test
         [Fact]
         public void SelectAdultUsers()
         {
-            var result = /*TODO*/;
+            // var result = /*TODO*/;
+            var result = from user in _users where user.Age>=18 select user;
 
             Assert.Equal(new[] {_users[1], _users[2], _users[3], _users[5]}, result);
         }
@@ -60,15 +64,19 @@ namespace Test
         [Fact]
         public void SelectAverageUserNameLengthForUsersWhoHaveName()
         {
-            var result = /*TODO*/;
-
+            // var result = /*TODO*/;
+            // var result = (from user in _users where user != null && user.Name != null select user!.Name.Length).Average();
+            var result = _users.Where(x => x != null && x.Name != null).Select(user => user.Name != null ? user.Name.Length : 0).Average();
+            
             Assert.Equal(4.4, result, 2);
         }
 
         [Fact]
         public void SelectCommentsWhereTitleIsLongerThanText()
         {
-            var result = /*TODO*/;
+            // var result = /*TODO*/;
+            var result = from comm in _comments
+                where comm.Title?.Length > comm.Text?.Length select comm;
 
             Assert.Equal(new[] {_comments[4]}, result);
         }
@@ -76,7 +84,8 @@ namespace Test
         [Fact]
         public void SelectOnlyUserNameForAdultUsers()
         {
-            var result = /*TODO*/;
+            // var result = /*TODO*/;
+            var result = from user in _users where user.Age >= 18 select user.Name;
 
             Assert.Equal(new[] {_users[1].Name, _users[2].Name, _users[3].Name, _users[5].Name}, result);
         }
@@ -84,7 +93,11 @@ namespace Test
         [Fact]
         public void SelectSumOfEvenNumbersAndSumOfOddNumbers()
         {
-            var result = /*TODO*/;
+            // var result = /*TODO*/;
+            var result = new List<(bool even, int sum)>{
+                (even: false, sum: (from number in _numbers where number % 2 != 0 select number).Sum()),
+                (even: true, sum: (from number in _numbers where number % 2 == 0 select number).Sum())
+            };
 
             var resultArray = result.ToArray();
             Assert.Equal(2, resultArray.Length);
@@ -95,7 +108,8 @@ namespace Test
         [Fact]
         public void SelectTotalNumberOfCharactersInAllWords()
         {
-            var result = /*TODO*/;
+            // var result = /*TODO*/;
+            var result = (from word in _words select word.Length).Sum();
 
             Assert.Equal(36, result);
         }
@@ -103,7 +117,16 @@ namespace Test
         [Fact]
         public void SelectUserCommentsForPostsWithNoTitle()
         {
-            var result = /*TODO*/;
+            // var result = /*TODO*/;
+            var result =
+//                 from comm in _comments
+//                 join post in _posts on comm.PostId equals post.Id
+//                 join user in _users on comm.
+                from post in _posts
+                join comm in _comments on post.Id equals comm.PostId
+                join user in _users on post.UserId equals user.Id
+                where post.Title.IsNullOrEmpty()
+                select (user, comm);
 
             var resultArray = result.ToArray();
             Assert.Equal(2, resultArray.Length);
@@ -114,7 +137,8 @@ namespace Test
         [Fact]
         public void SelectUsersWherePostTitleStartsWithUppercaseLetter()
         {
-            var result = /*TODO*/;
+            // var result = /*TODO*/;
+            var result = new List<User>(from user in _users join post in _posts on user.Id equals post.UserId where post?.Title != null && post.Title.Length > 0 && Char.IsUpper(post.Title[0]) select user);
             
             Assert.Equal(new[] {_users[0], _users[3]}, result);
         }
@@ -122,7 +146,8 @@ namespace Test
         [Fact]
         public void SelectUsersWithNameLongerThanThreeCharacters()
         {
-            var result = /*TODO*/;
+            // var result = /*TODO*/;
+            var result = from user in _users where user.Name != null && user.Name.Length > 3 select user;
 
             Assert.Equal(new[] {_users[0], _users[3], _users[4]}, result);
         }
@@ -130,7 +155,8 @@ namespace Test
         [Fact]
         public void SelectUserWithNameTom()
         {
-            var result = /*TODO*/;
+            // var result = /*TODO*/;
+            var result = from user in _users where user != null && user.Name == "Tom" select user;
 
             Assert.Equal(new[] {_users[1]}, result);
         }
@@ -138,7 +164,10 @@ namespace Test
         [Fact]
         public void SelectThreeLongestWordsInDescendingOrder()
         {
-            var result = /*TODO*/;
+            // var result = /*TODO*/;
+            var result = from x in (from word in _words orderby word.Length descending select word).Take(3)
+                orderby x
+                select x;
             
             Assert.Equal(new []{"dotnet", "house", "plane"}, result);
         }
