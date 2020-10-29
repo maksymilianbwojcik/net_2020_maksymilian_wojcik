@@ -16,11 +16,11 @@
 
 ### Wyjaśnienie czasów:
 * _Multithreading_
-  * [__Tpl > ThreadPool__](https://devblogs.microsoft.com/pfxteam/choosing-between-the-task-parallel-library-and-the-threadpool/);
-  * samodzielne tworzenie wątków jest wolniejsze niż kolejkowanie zadań;
-  * __SumThreads vs SumThreadInterlocked__ - SumThreads wykonuje dodawanie równolegle, natomiast Interlocked co prawda wykonuje dodawanie, ale robi to sekwencyjnie, dodatkowo wolniej niż standardowe metody sekwencyjne z powodu tworzenia wątków;
-  * __SumThreads__ działa wolniej na wielu wątkach, gdyby dataset był większy przypuszczam, że by się to zmieniło;
-  * __Linq__ jest wolniejszy niż inne metody 
+    * [__Tpl > ThreadPool__](https://devblogs.microsoft.com/pfxteam/choosing-between-the-task-parallel-library-and-the-threadpool/);
+    * samodzielne tworzenie wątków jest wolniejsze niż kolejkowanie zadań;
+    * __SumThreads vs SumThreadInterlocked__ - SumThreads wykonuje dodawanie równolegle, natomiast Interlocked co prawda wykonuje dodawanie, ale robi to sekwencyjnie, dodatkowo wolniej niż standardowe metody sekwencyjne z powodu tworzenia wątków;
+    * __SumThreads__ działa wolniej na wielu wątkach, gdyby dataset był większy przypuszczam, że by się to zmieniło;
+    * __Linq__ jest wolniejszy niż inne metody 
 * _Sequential_
     * __for vs foreach__ <br>
       pod względem do wydajności są do siebie bardzo podobne, po przeczytaniu kilku wątków ze stacka dowiedziałem się, że `for` z reguły powinien być szybszy, ale nie zawsze, zależy to od typu danych (możliwe, że nie tylko);<br>
