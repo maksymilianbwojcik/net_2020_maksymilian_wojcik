@@ -44,7 +44,6 @@ namespace Utils
         {
             // TODO: Use for LINQ to calculate sum
             return _data.AsParallel().Sum();
-            return _data.Sum();
         }
 
         private delegate void ThreadAction(int start, int stop);
