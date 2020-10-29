@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -45,7 +43,7 @@ namespace Utils
         public int SumLinq()
         {
             // TODO: Use for LINQ to calculate sum
-            
+            return _data.AsParallel().Sum();
             return _data.Sum();
         }
 
@@ -59,8 +57,8 @@ namespace Utils
 
             for (int i = 0; i < count; i++)
             {
-                var IDontUnderstandCSharp = i;
-                threads[i] = new Thread(() => action(IDontUnderstandCSharp * _data.Length / count, (IDontUnderstandCSharp + 1) * _data.Length / count));
+                var dontUnderstandCSharp = i;
+                threads[i] = new Thread(() => action(dontUnderstandCSharp * _data.Length / count, (dontUnderstandCSharp + 1) * _data.Length / count));
                 threads[i].Start();
             }
 
@@ -125,12 +123,12 @@ namespace Utils
             
             for (int i = 0; i < count; i++)
             {
-                var IDontUnderstandCSharp = i;
+                var dontUnderstandCSharp = i;
                 var resetEvent = new ManualResetEvent(false);
                 ThreadPool.QueueUserWorkItem(_ =>
                 {
-                    action(IDontUnderstandCSharp * _data.Length / count,
-                        (IDontUnderstandCSharp + 1) * _data.Length / count);
+                    action(dontUnderstandCSharp * _data.Length / count,
+                        (dontUnderstandCSharp + 1) * _data.Length / count);
                     resetEvent.Set();
                 });
                 events.Add(resetEvent);
