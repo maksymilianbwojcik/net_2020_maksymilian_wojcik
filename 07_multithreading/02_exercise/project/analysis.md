@@ -22,7 +22,7 @@
     * __SumThreads__ działa wolniej na wielu wątkach, gdyby dataset był większy przypuszczam, że by się to zmieniło;
     * __Linq__ jest wolniejszy niż inne metody 
 * _Sequential_
-    * __for vs foreach__ <br>
-      pod względem do wydajności są do siebie bardzo podobne, po przeczytaniu kilku wątków ze stacka dowiedziałem się, że `for` z reguły powinien być szybszy, ale nie zawsze, zależy to od typu danych (możliwe, że nie tylko);<br>
+    * __for vs foreach__ 
+      pod względem do wydajności są do siebie bardzo podobne, po przeczytaniu kilku wątków ze stacka dowiedziałem się, że `for` z reguły powinien być szybszy, ale nie zawsze, zależy to od typu danych (możliwe, że nie tylko);
       jeśli to możliwe bezpieczniej jest jednak korzystać z `foreach`'a
   
